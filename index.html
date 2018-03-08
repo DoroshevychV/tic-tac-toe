@@ -93,46 +93,61 @@
     function clickCell(Object) {
         count++;
         var id = '#' + Object + '-value';
-        var rand = randomPCQueue();
-        console.log(rand);
-        $(id).append('<span class="x-and-zero text-center" id="'+id+'">X</span>');
-
+        $(id).append('<span class="x-and-zero text-center" id="' + id + '">X</span>');
+        randomPCQueue(id);
+        // console.log($(id).length);
+        $(line).length;
     }
 
-    function randomPCQueue() {
-        var rand = 1 + Math.random() * (8)
+    function randomPCQueue(Object) {
+        var id = Object;
+        var rand = 1 + Math.random() * (8);
         rand = Math.round(rand);
-        var ret;
+        var isEmpty;
         switch (rand) {
             case 1:
-                return line_one_one;
+                isEmptyBlock(line_one_one,id);
                 break;
             case 2:
-                return line_one_two;
+                isEmptyBlock(line_one_two,id);
                 break;
             case 3:
-                return line_one_three;
+                isEmptyBlock(line_one_three,id);
                 break;
             case 4:
-                return line_two_one;
+                isEmptyBlock(line_two_one,id);
                 break;
             case 5:
-                return line_two_two;
+                isEmptyBlock(line_two_two,id);
                 break;
             case 6:
-                return line_two_three;
+                isEmptyBlock(line_two_three,id);
                 break;
             case 7:
-                return line_three_one;
+                isEmptyBlock(line_three_one,id);
                 break;
             case 8:
-                return line_three_two;
+                isEmptyBlock(line_three_two,id);
                 break;
             case 9:
-                return line_three_three;
+                isEmptyBlock(line_three_three,id);
                 break;
             default:
-                alert( 'Щось пішло не так, перезавантажте сторінку!' );
+                alert('Щось пішло не так, перезавантажте сторінку!');
+        }
+    }
+
+    function isEmptyBlock(line,id) {
+        console.log($(line).length);
+        switch ($(line).length) {
+            case 0:
+                $(line).append('<span class="x-and-zero text-center" id="' + id + '">0</span>');
+                break;
+            case 1:
+                randomPCQueue(id);
+                break;
+            default:
+                alert('Щось пішло не так, перезавантажте сторінку!');
         }
     }
 
