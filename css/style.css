@@ -24,6 +24,9 @@
     cursor: pointer;
     background-color: rgba(0,0,0,0.1);
 }
+.x-and-zero{
+    font-size: 50px;
+}
 @media screen and (max-width: 992px) {
     .cell{
         height: 60px;
@@ -36,6 +39,9 @@
     }
     .line-three{
         height: 60px;
+    }
+    .x-and-zero{
+        font-size: 50px;
     }
 }
 @media screen and (max-width: 768px) {
@@ -51,6 +57,9 @@
     .line-three{
         height: 40px;
     }
+    .x-and-zero{
+        font-size: 10px;
+    }
 }
 .gamer-name{
     color: #162449;
@@ -64,10 +73,10 @@
     color: #2e6da4;
 }
 .line-one{
-    border-bottom: 3px solid black;
+    border-bottom: 2px solid black;
 }
 .line-two{
-    border-bottom: 3px solid black;
+    border-bottom: 2px solid black;
 }
 /*.line-three{*/
     /*border-bottom: 3px solid black;*/

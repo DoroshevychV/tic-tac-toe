@@ -17,49 +17,60 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 col-sm-4 col-xs-3 blocks-round left-block pull-left text-center">
+
+        <div class="col-md-3 col-sm-4 col-xs-4 blocks-round left-block pull-left text-center">
             <h3 class="gamer-name text-center">You<h1 class="gamer-value text-center">'X'</h1></h3>
             <img class="avatar text-center img-responsive" src="img/man.png" alt="">
             <p class="queue" id="man-queue">Your queue!</p>
         </div>
-        <div class="col-md-6 col-sm-4 col-xs-6 center-block">
-            <div class="col-md-12 col-sm-12 col-xs-12 line-one">
-                <div class="col-md-4 col-sm-4 col-xs-4 cell line-one-one cell-right-border" id="line-one-one" onclick="clickCell(this.id)">
-                    <span class="" id="line-one-one-value">x</span>
+
+        <div class="col-md-6 col-sm-4 col-xs-4 center-block">
+            <div class="col-md-12 col-sm-12 col-xs-12 line-one text-center">
+                <div class="col-md-4 col-sm-4 col-xs-4 cell line-one-one cell-right-border" id="line-one-one"
+                     onclick="clickCell(this.id)">
+                    <span class="" id="line-one-one-value"></span>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 cell line-one-two cell-right-border" id="line-one-two" onclick="clickCell(this.id)">
+                <div class="col-md-4 col-sm-4 col-xs-4 cell line-one-two cell-right-border" id="line-one-two"
+                     onclick="clickCell(this.id)">
                     <span class="" id="line-one-two-value"></span>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 cell line-one-three" id="line-one-three" onclick="clickCell(this.id)">
+                <div class="col-md-4 col-sm-4 col-xs-4 cell line-one-two" id="line-one-three"
+                     onclick="clickCell(this.id)">
                     <span class="" id="line-one-three-value"></span>
                 </div>
             </div>
 
-            <div class="col-md-12 col-sm-12 col-xs-12 line-two">
-                <div class="col-md-4 col-sm-4 col-xs-4 cell line-two-one cell-right-border" id="line-two-one" onclick="clickCell(this.id)">
+            <div class="col-md-12 col-sm-12 col-xs-12 line-two text-center">
+                <div class="col-md-4 col-sm-4 col-xs-4 cell line-two-one cell-right-border" id="line-two-one"
+                     onclick="clickCell(this.id)">
                     <span class="" id="line-two-one-value"></span>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 cell line-two-two cell-right-border" id="line-two-two" onclick="clickCell(this.id)">
+                <div class="col-md-4 col-sm-4 col-xs-4 cell line-two-two cell-right-border" id="line-two-two"
+                     onclick="clickCell(this.id)">
                     <span class="" id="line-two-two-value"></span>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 cell line-two-three" id="line-two-three" onclick="clickCell(this.id)">
+                <div class="col-md-4 col-sm-4 col-xs-4 cell line-two-three" id="line-two-three"
+                     onclick="clickCell(this.id)">
                     <span class="" id="line-two-three-value"></span>
                 </div>
             </div>
 
-            <div class="col-md-12 col-sm-12 col-xs-12 line-three">
-                <div class="col-md-4 col-sm-4 col-xs-4 cell line-three-one cell-right-border" id="line-three-one" onclick="clickCell(this.id)">
+            <div class="col-md-12 col-sm-12 col-xs-12 line-three text-center">
+                <div class="col-md-4 col-sm-4 col-xs-4 cell line-three-one cell-right-border" id="line-three-one"
+                     onclick="clickCell(this.id)">
                     <span class="" id="line-three-one-value"></span>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 cell line-three-two cell-right-border" id="line-three-two" onclick="clickCell(this.id)">
+                <div class="col-md-4 col-sm-4 col-xs-4 cell line-three-two cell-right-border" id="line-three-two"
+                     onclick="clickCell(this.id)">
                     <span class="" id="line-three-two-value"></span>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-4 cell line-three-three" id="line-three-three" onclick="clickCell(this.id)">
+                <div class="col-md-4 col-sm-4 col-xs-4 cell line-three-three" id="line-three-three"
+                     onclick="clickCell(this.id)">
                     <span class="" id="line-three-three-value"></span>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-sm-4 col-xs-3 blocks-round right-block pull-right text-center">
+        <div class="col-md-3 col-sm-4 col-xs-4 blocks-round right-block pull-right text-center">
             <h3 class="gamer-name text-center">PC<h1 class="gamer-value text-center">'0'</h1></h3>
             <img class="avatar text-center img-responsive" src="img/laptop.png" alt="">
         </div>
@@ -69,52 +80,62 @@
 </body>
 <script>
     var count = 0;
+    var line_one_one = 'line-one-one-value';
+    var line_one_two = 'line-one-two-value';
+    var line_one_three = 'line-one-three-value';
+    var line_two_one = 'line-two-one-value';
+    var line_two_two = 'line-two-two-value';
+    var line_two_three = 'line-two-three-value';
+    var line_three_one = 'line-three-one-value';
+    var line_three_two = 'line-three-two-value';
+    var line_three_three = 'line-three-three-value';
 
-    $(function() {
-
-            if(count == 0) {
-                $('#man-queue').css('display', 'block');
-            }
-
-    });
     function clickCell(Object) {
-        console.log(Object);
         count++;
-        var id = '#'+Object+'-value';
-        console.log(id.value)
-        console.log(id);
-        if (count == 1) {
-            $('id').css('background-color','red');
-            $('#man-queue').css('display', 'none');
-            randomPCQueue();
-            $('#man-queue').css('display', 'block');
-        }
-        else if (count == 3) {
-            $('id').css('background-color','red');
-            $('#man-queue').css('display', 'none');
-            randomPCQueue();
-            $('#man-queue').css('display', 'block');
-        }
-        else if (count == 5) {
-            $('id').css('background-color','red');
-            $('#man-queue').css('display', 'none');
-            randomPCQueue();
-            $('#man-queue').css('display', 'block');
-        }
-        else if (count == 7) {
-            $('id').css('background-color','red');
-            $('#man-queue').css('display', 'none');
-            randomPCQueue();
-            $('#man-queue').css('display', 'block');
-        }
-        else{
-            alert("Ничья");
+        var id = '#' + Object + '-value';
+        var rand = randomPCQueue();
+        console.log(rand);
+        $(id).append('<span class="x-and-zero text-center" id="'+id+'">X</span>');
 
+    }
+
+    function randomPCQueue() {
+        var rand = 1 + Math.random() * (8)
+        rand = Math.round(rand);
+        var ret;
+        switch (rand) {
+            case 1:
+                return line_one_one;
+                break;
+            case 2:
+                return line_one_two;
+                break;
+            case 3:
+                return line_one_three;
+                break;
+            case 4:
+                return line_two_one;
+                break;
+            case 5:
+                return line_two_two;
+                break;
+            case 6:
+                return line_two_three;
+                break;
+            case 7:
+                return line_three_one;
+                break;
+            case 8:
+                return line_three_two;
+                break;
+            case 9:
+                return line_three_three;
+                break;
+            default:
+                alert( 'Щось пішло не так, перезавантажте сторінку!' );
         }
     }
-    function randomPCQueue(){
-        alert("YES");
-    }
+
 
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
