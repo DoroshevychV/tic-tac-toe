@@ -23,7 +23,15 @@
             <img class="avatar text-center img-responsive" src="img/man.png" alt="">
             <p class="queue" id="man-queue">Your queue!</p>
         </div>
-
+        <div class="alert alert-success col-md-6 col-sm-4 col-xs-4 error-block">
+            <span>Something went wrong, restart this page!</span>
+        </div>
+        <div class="alert alert-success col-md-6 col-sm-4 col-xs-4 user-win">
+            <span>You win!</span>
+        </div>
+        <div class="alert alert-success col-md-6 col-sm-4 col-xs-4 pc-win">
+            <span>You failed!</span>
+        </div>
         <div class="col-md-6 col-sm-4 col-xs-4 center-block">
             <div class="col-md-12 col-sm-12 col-xs-12 line-one text-center">
                 <div class="col-md-4 col-sm-4 col-xs-4 cell line-one-one cell-right-border" id="line-one-one"
@@ -79,7 +87,10 @@
 
 </body>
 <script>
+    //рахівник ходів(9 мкксимум)
     var count = 0;
+
+    //заготовки айдішок
     var line_one_one = 'line-one-one-value';
     var line_one_two = 'line-one-two-value';
     var line_one_three = 'line-one-three-value';
@@ -90,13 +101,33 @@
     var line_three_two = 'line-three-two-value';
     var line_three_three = 'line-three-three-value';
 
+    //змінні, які будуть містити значення блоків для порівняння
+    var line_one_one_value;
+    var line_one_two_value;
+    var line_one_three_value;
+    var line_two_one_value;
+    var line_two_two_value;
+    var line_two_three_value;
+    var line_three_one_value;
+    var line_three_two_value;
+    var line_three_three_value;
+
     function clickCell(Object) {
         count++;
-        var id = '#' + Object + '-value';
-        $(id).append('<span class="x-and-zero text-center" id="' + id + '">X</span>');
-        randomPCQueue(id);
-        // console.log($(id).length);
-        $(line).length;
+        var id = '#' + Object;
+
+        if (count == 9) {
+            id = '#' + Object + '-value';
+            $(id).append('<span class="x-and-zero text-center" id="' + id + '">X</span>');
+            checkForAWin();
+
+        } else if ($(id + '-value').text().length < 1) {
+            id = '#' + Object + '-value';
+            $(id).append('<span class="x-and-zero text-center" id="' + id + '">X</span>');
+            checkForAWin();
+            $(id + '-value').text().length;
+            randomPCQueue(id);
+        }
     }
 
     function randomPCQueue(Object) {
@@ -106,49 +137,190 @@
         var isEmpty;
         switch (rand) {
             case 1:
-                isEmptyBlock(line_one_one,id);
+                isEmptyBlockAndWriteZero(line_one_one, id);
                 break;
             case 2:
-                isEmptyBlock(line_one_two,id);
+                isEmptyBlockAndWriteZero(line_one_two, id);
                 break;
             case 3:
-                isEmptyBlock(line_one_three,id);
+                isEmptyBlockAndWriteZero(line_one_three, id);
                 break;
             case 4:
-                isEmptyBlock(line_two_one,id);
+                isEmptyBlockAndWriteZero(line_two_one, id);
                 break;
             case 5:
-                isEmptyBlock(line_two_two,id);
+                isEmptyBlockAndWriteZero(line_two_two, id);
                 break;
             case 6:
-                isEmptyBlock(line_two_three,id);
+                isEmptyBlockAndWriteZero(line_two_three, id);
                 break;
             case 7:
-                isEmptyBlock(line_three_one,id);
+                isEmptyBlockAndWriteZero(line_three_one, id);
                 break;
             case 8:
-                isEmptyBlock(line_three_two,id);
+                isEmptyBlockAndWriteZero(line_three_two, id);
                 break;
             case 9:
-                isEmptyBlock(line_three_three,id);
+                isEmptyBlockAndWriteZero(line_three_three, id);
                 break;
             default:
-                alert('Щось пішло не так, перезавантажте сторінку!');
+                $('.error-block').css('display', 'block');
         }
     }
 
-    function isEmptyBlock(line,id) {
-        console.log($(line).length);
-        switch ($(line).length) {
-            case 0:
-                $(line).append('<span class="x-and-zero text-center" id="' + id + '">0</span>');
-                break;
-            case 1:
-                randomPCQueue(id);
-                break;
-            default:
-                alert('Щось пішло не так, перезавантажте сторінку!');
+    function isEmptyBlockAndWriteZero(line, id) {
+        console.log($('#' + line).text().length);
+        if ($('#' + line).text().length < 1) {
+            count++;
+            $('#' + line).append('<span class="x-and-zero text-center" id="' + id + '">0</span>');
+        } else if ($('#' + line).text().length == 1) {
+            randomPCQueue(id);
+        } else {
+            $('.error-block').css('display', 'block');
         }
+        checkForAWin()
+    }
+
+    function checkForAWin() {
+
+        //перший ряд
+        var line_one_one_value = $('#' + line_one_one).text();
+        var line_one_two_value = $('#' + line_one_two).text();
+        var line_one_three_value = $('#' + line_one_three).text();
+        //другий ряд
+        var line_two_one_value = $('#' + line_two_one).text();
+        var line_two_two_value = $('#' + line_two_two).text();
+        var line_two_three_value = $('#' + line_two_three).text();
+        //третий ряд
+        var line_three_one_value = $('#' + line_three_one).text();
+        var line_three_two_value = $('#' + line_three_two).text();
+        var line_three_three_value = $('#' + line_three_three).text();
+
+        //перший ряд по вертикалі
+        if (line_one_one_value === line_two_one_value && line_two_one_value === line_three_one_value) {
+            if (line_one_one_value === 'X') {
+                $('.user-win').css('display', 'block');
+                $('#' + line_one_one).css('color', 'red');
+                $('#' + line_two_one).css('color', 'red');
+                $('#' + line_three_one).css('color', 'red');
+                setTimeout(reload, 3000);
+            } else if (line_one_one_value === '0') {
+                $('.pc-win').css('display', 'block');
+                $('#' + line_one_one).css('color', 'red');
+                $('#' + line_two_one).css('color', 'red');
+                $('#' + line_three_one).css('color', 'red');
+                setTimeout(reload, 3000);
+            }
+            //другий ряд по вертикалі
+        } else if (line_one_two_value === line_two_two_value && line_two_two_value === line_three_two_value) {
+            if (line_one_two_value === 'X') {
+                $('.user-win').css('display', 'block');
+                $('#' + line_one_two).css('color', 'red');
+                $('#' + line_two_two).css('color', 'red');
+                $('#' + line_three_two).css('color', 'red');
+                setTimeout(reload, 3000);
+            } else if (line_one_two_value === '0') {
+                $('.pc-win').css('display', 'block');
+                $('#' + line_one_two).css('color', 'red');
+                $('#' + line_two_two).css('color', 'red');
+                $('#' + line_three_two).css('color', 'red');
+                setTimeout(reload, 3000);
+            }
+            //третий ряд по вертикалі
+        } else if (line_one_three_value === line_two_three_value && line_two_three_value === line_three_three_value) {
+            if (line_one_three_value === 'X') {
+                $('.user-win').css('display', 'block');
+                $('#' + line_one_three).css('color', 'red');
+                $('#' + line_two_three).css('color', 'red');
+                $('#' + line_three_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            } else if (line_one_three_value === '0') {
+                $('.pc-win').css('display', 'block');
+                $('#' + line_one_three).css('color', 'red');
+                $('#' + line_two_three).css('color', 'red');
+                $('#' + line_three_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            }
+            //перший ряд по горизонталі
+        } else if (line_one_one_value === line_one_two_value && line_one_two_value === line_one_three_value) {
+            if (line_one_one_value === 'X') {
+                $('.user-win').css('display', 'block');
+                $('#' + line_one_one).css('color', 'red');
+                $('#' + line_one_two).css('color', 'red');
+                $('#' + line_one_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            } else if (line_one_one_value === '0') {
+                $('.pc-win').css('display', 'block');
+                $('#' + line_one_one).css('color', 'red');
+                $('#' + line_one_two).css('color', 'red');
+                $('#' + line_one_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            }
+            //другий ряд по горизонталі
+        } else if (line_two_one_value === line_two_two_value && line_two_two_value === line_two_three_value) {
+            if (line_two_one_value === 'X') {
+                $('.user-win').css('display', 'block');
+                $('#' + line_two_one).css('color', 'red');
+                $('#' + line_two_two).css('color', 'red');
+                $('#' + line_two_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            } else if (line_one_one_value === '0') {
+                $('.pc-win').css('display', 'block');
+                $('#' + line_two_one).css('color', 'red');
+                $('#' + line_two_two).css('color', 'red');
+                $('#' + line_two_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            }
+            //третий ряд по горизонталі
+        } else if (line_three_one_value === line_three_two_value && line_three_two_value === line_three_three_value) {
+            if (line_three_one_value === 'X') {
+                $('.user-win').css('display', 'block');
+                $('#' + line_three_one).css('color', 'red');
+                $('#' + line_three_two).css('color', 'red');
+                $('#' + line_three_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            } else if (line_one_one_value === '0') {
+                $('.pc-win').css('display', 'block');
+                $('#' + line_three_one).css('color', 'red');
+                $('#' + line_three_two).css('color', 'red');
+                $('#' + line_three_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            }
+            //діагональ з ліва вниз
+        } else if (line_one_one_value === line_two_two_value && line_three_two_value === line_three_three_value) {
+            if (line_one_one_value === 'X') {
+                $('.user-win').css('display', 'block');
+                $('#' + line_one_one).css('color', 'red');
+                $('#' + line_two_two).css('color', 'red');
+                $('#' + line_three_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            } else if (line_one_one_value === '0') {
+                $('.pc-win').css('display', 'block');
+                $('#' + line_one_one).css('color', 'red');
+                $('#' + line_two_two).css('color', 'red');
+                $('#' + line_three_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            }
+            //діагональ з ліва вверх
+        } else if (line_three_one_value === line_two_two_value && line_three_two_value === line_three_three_value) {
+            if (line_one_one_value === 'X') {
+                $('.user-win').css('display', 'block');
+                $('#' + line_one_one).css('color', 'red');
+                $('#' + line_two_two).css('color', 'red');
+                $('#' + line_three_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            } else if (line_one_one_value === '0') {
+                $('.pc-win').css('display', 'block');
+                $('#' + line_one_one).css('color', 'red');
+                $('#' + line_two_two).css('color', 'red');
+                $('#' + line_three_three).css('color', 'red');
+                setTimeout(reload, 3000);
+            }
+        }
+    }
+
+    function reload() {
+        location.reload();
     }
 
 

@@ -93,3 +93,12 @@
 #pc-queue{
     display: none;
 }
+.user-win{
+    display: none;
+}
+.pc-win{
+    display: none;
+}
+.error-block{
+    display: none;
+}
