@@ -23,14 +23,17 @@
             <img class="avatar text-center img-responsive" src="img/man.png" alt="">
             <p class="queue" id="man-queue">Your queue!</p>
         </div>
-        <div class="alert alert-success col-md-6 col-sm-4 col-xs-4 error-block">
+        <div class="alert alert-warning col-md-6 col-sm-4 col-xs-4 error-block text-center">
             <span>Something went wrong, restart this page!</span>
         </div>
-        <div class="alert alert-success col-md-6 col-sm-4 col-xs-4 user-win">
+        <div class="alert alert-success col-md-6 col-sm-4 col-xs-4 user-win text-center">
             <span>You win!</span>
         </div>
-        <div class="alert alert-success col-md-6 col-sm-4 col-xs-4 pc-win">
+        <div class="alert alert-danger col-md-6 col-sm-4 col-xs-4 pc-win text-center">
             <span>You failed!</span>
+        </div>
+        <div class="alert alert-warning col-md-6 col-sm-4 col-xs-4 text-center nobody_s">
+            <span>Nobody's!</span>
         </div>
         <div class="col-md-6 col-sm-4 col-xs-4 center-block">
             <div class="col-md-12 col-sm-12 col-xs-12 line-one text-center">
@@ -120,14 +123,16 @@
             id = '#' + Object + '-value';
             $(id).append('<span class="x-and-zero text-center" id="' + id + '">X</span>');
             checkForAWin();
-
         } else if ($(id + '-value').text().length < 1) {
             id = '#' + Object + '-value';
             $(id).append('<span class="x-and-zero text-center" id="' + id + '">X</span>');
             checkForAWin();
             $(id + '-value').text().length;
             randomPCQueue(id);
+        }else{
+            count--;
         }
+
     }
 
     function randomPCQueue(Object) {
@@ -169,7 +174,6 @@
     }
 
     function isEmptyBlockAndWriteZero(line, id) {
-        console.log($('#' + line).text().length);
         if ($('#' + line).text().length < 1) {
             count++;
             $('#' + line).append('<span class="x-and-zero text-center" id="' + id + '">0</span>');
@@ -264,7 +268,7 @@
                 $('#' + line_two_two).css('color', 'red');
                 $('#' + line_two_three).css('color', 'red');
                 setTimeout(reload, 3000);
-            } else if (line_one_one_value === '0') {
+            } else if (line_two_one_value === '0') {
                 $('.pc-win').css('display', 'block');
                 $('#' + line_two_one).css('color', 'red');
                 $('#' + line_two_two).css('color', 'red');
@@ -279,7 +283,7 @@
                 $('#' + line_three_two).css('color', 'red');
                 $('#' + line_three_three).css('color', 'red');
                 setTimeout(reload, 3000);
-            } else if (line_one_one_value === '0') {
+            } else if (line_three_one_value === '0') {
                 $('.pc-win').css('display', 'block');
                 $('#' + line_three_one).css('color', 'red');
                 $('#' + line_three_two).css('color', 'red');
@@ -287,7 +291,7 @@
                 setTimeout(reload, 3000);
             }
             //діагональ з ліва вниз
-        } else if (line_one_one_value === line_two_two_value && line_three_two_value === line_three_three_value) {
+        } else if (line_one_one_value === line_two_two_value && line_two_two_value === line_three_three_value) {
             if (line_one_one_value === 'X') {
                 $('.user-win').css('display', 'block');
                 $('#' + line_one_one).css('color', 'red');
@@ -302,20 +306,23 @@
                 setTimeout(reload, 3000);
             }
             //діагональ з ліва вверх
-        } else if (line_three_one_value === line_two_two_value && line_three_two_value === line_three_three_value) {
-            if (line_one_one_value === 'X') {
+        } else if (line_three_one_value === line_two_two_value && line_two_two_value === line_one_three_value) {
+            if (line_three_one_value === 'X') {
                 $('.user-win').css('display', 'block');
-                $('#' + line_one_one).css('color', 'red');
+                $('#' + line_one_three).css('color', 'red');
                 $('#' + line_two_two).css('color', 'red');
-                $('#' + line_three_three).css('color', 'red');
+                $('#' + line_three_one).css('color', 'red');
                 setTimeout(reload, 3000);
-            } else if (line_one_one_value === '0') {
+            } else if (line_three_one_value === '0') {
                 $('.pc-win').css('display', 'block');
-                $('#' + line_one_one).css('color', 'red');
+                $('#' + line_one_three).css('color', 'red');
                 $('#' + line_two_two).css('color', 'red');
-                $('#' + line_three_three).css('color', 'red');
+                $('#' + line_three_one).css('color', 'red');
                 setTimeout(reload, 3000);
             }
+        }else if(count === 9){
+            $('.nobody_s').css('display', 'block');
+            setTimeout(reload, 3000);
         }
     }
 
